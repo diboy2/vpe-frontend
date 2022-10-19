@@ -1,24 +1,27 @@
 import React from "react";
+import Box from "@mui/material/Box";
 import Tabs from '@mui/material/Tabs';
 import Tab from '@mui/material/Tab';
 import FileUpload from "./FileUpload.jsx";
-import Paper from '@mui/material/Paper';
+import TextUpload from "./TextUpload.jsx";
+
+
 const PrePhysicalExamination = () => {
-    const [value, setValue] = React.useState(2);
+    const [value, setValue] = React.useState("one");
 
     const handleChange = (event, newValue) => {
       setValue(newValue);
     };
     return (
-        <>
+        <Box sx={{ width: '100%', height:'100%' }} >
             <Tabs value={value} onChange={handleChange} centered={true}>
-                <Tab label="Text Upload" />
-                <Tab label="File Upload" />
+                <Tab label="Text Upload" value="zero" />
+                <Tab label="File Upload" value="one"/>
             </Tabs>
-            <Paper height="500">
-                <FileUpload />
-            </Paper>
-        </>
+            { value == "zero" && <TextUpload />}
+
+            { value == "one" && <FileUpload />}
+        </Box>
         
     )
 };

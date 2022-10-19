@@ -6,6 +6,8 @@ import StepLabel from '@mui/material/StepLabel';
 import Button from '@mui/material/Button';
 import Typography from '@mui/material/Typography';
 import PrePhysicalExamination from "../../components/pre-physical-exam/index";
+import PhysicalExamination from "../../components/physical-exam/index";
+import PostPhysicalExamination from "../../components/physical-exam/index";
 
 const steps = ['Pre Physical Examination', 'Physical Examination', 'Post Physical Examination'];
 
@@ -37,8 +39,8 @@ export default function HorizontalLinearStepper() {
   };
 
   return (
-    <Box sx={{ width: '100%' }}>
-      <Stepper activeStep={activeStep}>
+    <Box sx={{ width: '100%', height:'100%' }} >
+      <Stepper activeStep={activeStep} sx={{ width: '100%' }}>
         {steps.map((label, index) => {
           const stepProps = {};
           const labelProps = {};
@@ -52,11 +54,8 @@ export default function HorizontalLinearStepper() {
           );
         })}
       </Stepper>
-        <React.Fragment>
-            <Typography sx={{ mt: 2, mb: 1 }} height="400" >
-                <PrePhysicalExamination/>
-            </Typography>
-            <Box sx={{ display: 'flex', flexDirection: 'row', pt: 2 }}>
+      <Box sx={{ height:'100%' }}>
+      <Box sx={{ display: 'flex', flexDirection: 'row', pt: 2 }}>
             <Button
                 color="inherit"
                 disabled={activeStep === 0}
@@ -70,8 +69,12 @@ export default function HorizontalLinearStepper() {
             <Button onClick={handleNext}>
                 {activeStep === steps.length - 1 ? 'Finish' : 'Next'}
             </Button>
-            </Box>
-        </React.Fragment>
+          </Box>
+          { activeStep === 0 && <PrePhysicalExamination/>}
+          { activeStep === 1 && <PhysicalExamination />}
+          { activeStep === 2 && <PostPhysicalExamination />}
+          
+      </Box>
     </Box>
   );
 }
