@@ -5,15 +5,12 @@ import ImgMediaCard from "./ImageMedia";
 import Grid from "@mui/material/Grid";
 import { Divider, Typography } from "@mui/material";
 
-import FileCopyIcon from '@mui/icons-material/FileCopyOutlined';
-import SaveIcon from '@mui/icons-material/Save';
-
 
 const FileUpload = () => {
     
     return (
         <Grid container display="flex">
-            <Grid item xs={9} 
+            <Grid item xs={8} 
                 display="flex" 
                 justifyContent="center" 
                 alignItems="center" 
@@ -22,7 +19,7 @@ const FileUpload = () => {
                 padding="16px">
                 <ImgMediaCard />
             </Grid>
-            <Grid item xs={3}>
+            <Grid item xs={4}>
                 <Typography variant="h3">
                     Files
                 </Typography>

@@ -7,7 +7,7 @@ import TextUpload from "./TextUpload.jsx";
 
 
 const PrePhysicalExamination = () => {
-    const [value, setValue] = React.useState("one");
+    const [value, setValue] = React.useState("zero");
 
     const handleChange = (event, newValue) => {
       setValue(newValue);
