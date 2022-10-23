@@ -57,9 +57,9 @@ const TextUpload = () => {
     };
     const addMedicalHistory = async () => {
         const uri = await addText("/api/upload/medical-history");
-        setPatientConcerns(
+        setMedicalHistory(
             [
-                ...patientConcerns,
+                ...medicalHistory,
                 {
                     uri,
                     text
@@ -70,9 +70,9 @@ const TextUpload = () => {
     };
     const addDailyMetric = async () => {
         const uri = await addText("/api/upload/daily-metrics");
-        setPatientConcerns(
+        setDailyMetrics(
             [
-                ...patientConcerns,
+                ...dailyMetrics,
                 {
                     uri,
                     text
