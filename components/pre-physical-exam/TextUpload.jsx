@@ -9,13 +9,79 @@ import ListItem from "@mui/material/ListItem";
 import ListItemText from "@mui/material/ListItemText";
 import ListItemIcon from "@mui/material/ListItemIcon";
 import Stack from "@mui/material/Stack";
-import { CardContent, CardActions } from "@mui/material";
+import CardContent from "@mui/material/CardContent";
+import CardActions from "@mui/material/CardActions";
+import Icon from "@mui/material/Icon";
 import TextField from '@mui/material/TextField';
-import { savePatientConcerns } from "../../pages/api/upload/patient-concerns";
+import { useVPEContext } from "../../context/VPEContext";
 
 const TextUpload = () => {
+    const { 
+        state: {
+            patientConcerns,
+            medicalHistory,
+            dailyMetrics
+        }, 
+        action:{ 
+            setPatientConcerns,
+            setMedicalHistory,
+            setDailyMetrics
+        } 
+    } = useVPEContext();
     const [text, setText] = useState("");
-
+    const addText = async (url) => {
+        const response = await fetch(url,{
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json"
+            },
+            body:JSON.stringify({ text })
+        });
+        if(response.ok) {
+            return await response.text()
+        }
+        return ""
+    };
+    const addPatientConcern = async () => {
+        const uri = await addText("/api/upload/patient-concerns");
+        setPatientConcerns(
+            [
+                ...patientConcerns,
+                {
+                    uri,
+                    text
+                }
+            ]
+        );
+        setText("");   
+    };
+    const addMedicalHistory = async () => {
+        const uri = await addText("/api/upload/medical-history");
+        setPatientConcerns(
+            [
+                ...patientConcerns,
+                {
+                    uri,
+                    text
+                }
+            ]
+        );
+        setText("");   
+    };
+    const addDailyMetric = async () => {
+        const uri = await addText("/api/upload/daily-metrics");
+        setPatientConcerns(
+            [
+                ...patientConcerns,
+                {
+                    uri,
+                    text
+                }
+            ]
+        );
+        setText("");   
+    };
+    
     return (
         <Grid container display="flex">
             <Grid item xs={8} backgroundColor="gray"  padding="16px"    >
@@ -37,15 +103,7 @@ const TextUpload = () => {
                     <CardActions>
                         <Stack spacing={2} direction="row-reverse">
                             <Button size="small" variant="contained">Add Daily Metrics</Button>
-                            <Button size="small" variant="contained" onClick={async () => {
-                                await fetch("/api/upload/patient-concerns",{
-                                    method: "POST",
-                                    headers: {
-                                        "Content-Type": "application/json"
-                                    },
-                                    body:JSON.stringify({ text })
-                                });
-                            }}>Add Patient Concerns</Button>
+                            <Button size="small" variant="contained" onClick={addPatientConcern}>Add Patient Concerns</Button>
                             <Button size="small" variant="contained">Add Medical History</Button>
                         </Stack>
                     </CardActions>
@@ -56,42 +114,63 @@ const TextUpload = () => {
                 >
                     <Grid item xs={12}  >
                         Daily Metrics
-                        <List>
-                            <ListItem>
-                                <ListItemIcon>
-                                    <FolderIcon />
-                                </ListItemIcon>
-                                <ListItemText
-                                    primary="Single-line item"
-                                />
-                            </ListItem>
-                        </List>
+                        {
+                            dailyMetrics.length == 0
+                            ? <Icon /> 
+                            : dailyMetrics.map((dailyMetric) => {
+                                return (
+                                    <ListItem>
+                                        <ListItemIcon>
+                                            <FolderIcon />
+                                        </ListItemIcon>
+                                        <ListItemText
+                                            primary="Single-line item"
+                                        />
+                                    </ListItem>
+                                );
+                                })
+                        }
                     </Grid>
                     <Grid item xs={12} >
                         Patient Concerns
                         <List>
-                            <ListItem>
-                                <ListItemIcon>
-                                    <FolderIcon />
-                                </ListItemIcon>
-                                <ListItemText
-                                    primary="Single-line item"
-                                />
-                            </ListItem>
+                            {
+                                patientConcerns.length == 0
+                                ? <Icon /> 
+                                : patientConcerns.map((patientConcern) => {
+                                    return (
+                                        <ListItem>
+                                            <ListItemIcon>
+                                                <FolderIcon />
+                                            </ListItemIcon>
+                                            <ListItemText
+                                                primary={`${patientConcern}`}
+                                            />
+                                        </ListItem>
+                                    );
+                                 })
+                            }
                         </List>
                     </Grid>
                     <Grid item xs={12} >
                         Medical History
-                        <List>
-                            <ListItem>
-                                <ListItemIcon>
-                                    <FolderIcon />
-                                </ListItemIcon>
-                                <ListItemText
-                                    primary="Single-line item"
-                                />
-                            </ListItem>
-                        </List>
+                        {
+                                medicalHistory.length == 0
+                                ? <Icon /> 
+                                : medicalHistory.map((history) => {
+                                    return (
+                                        <ListItem>
+                                            <ListItemIcon>
+                                                <FolderIcon />
+                                            </ListItemIcon>
+                                            <ListItemText
+                                                primary="Single-line item"
+                                            />
+                                        </ListItem>
+                                    );
+                                 })
+                            }
+          
                     </Grid>
                 </Grid>
             </Grid>
