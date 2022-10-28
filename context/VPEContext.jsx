@@ -6,7 +6,48 @@ import React, { createContext, useContext, useReducer } from "react";
     dailyMetrics: [],
     images: [],
     videos: [],
-    physicianNotes: [],
+    physicianNotes: {
+        vitalSigns: {
+            uri: "",
+            text: ""
+        },
+        skin: {
+            uri: "",
+            text: ""
+        },
+        headSenses: {
+            uri: "",
+            text: ""
+        },
+        neck: {
+            uri: "",
+            text: ""
+        },
+        lungs: {
+            uri: "",
+            text: ""
+        },
+        heart: {
+            uri: "",
+            text: ""
+        },
+        abdomen: {
+            uri: "",
+            text: ""
+        },
+        extremities: {
+            uri: "",
+            text: ""
+        },
+        neuro: {
+            uri: "",
+            text: ""
+        },
+        social: {
+            uri: "",
+            text: ""
+        }
+    },
     entityMentions: [],
     entities: []
 };

@@ -1,5 +1,6 @@
 import * as React from 'react';
 import Box from '@mui/material/Box';
+import LinearProgress from '@mui/material/LinearProgress';
 import FormControl from '@mui/material/FormControl';
 import Grid from '@mui/material/Grid';
 import Stepper from '@mui/material/Stepper';
@@ -10,45 +11,82 @@ import Button from '@mui/material/Button';
 import Paper from '@mui/material/Paper';
 import TextField from '@mui/material/TextField';
 import Typography from '@mui/material/Typography';
+import { useVPEContext } from "../../context/VPEContext";
 
 const steps = [
   {
+    key: "vitalSigns",
     label: 'Vital Signs'
   },
   {
+    key: "skin",
     label: 'Skin'
   },
   {
+    key: "headSenses",
     label: 'Head and Senses'
   },
   {
-    label: 'Neck',
+    key: "neck",
+    label: 'Neck'
   },
   {
+    key: "lungs",
     label: 'Lungs'  
   },
   {
+    key: "heart",
     label: 'Heart'
   },
   {
+    key: "abdomen",
     label: 'Abdomen'
   },
   {
+    key: "extremities",
     label: 'Extremities'
   },
   {
+    key: "neuro",
     label: 'Neurological'
   },
   {
+    key: "social",
     label: 'Social Determinants of Health'
-  },
+  }
 ];
 
 const PhysicalExamination = () =>  {
+  const [isLoading, setIsLoading] = React.useState(false);
   const [activeStep, setActiveStep] = React.useState(0);
-
-  const handleNext = () => {
+  const { 
+      state: {
+        physicianNotes
+      }, 
+      action:{ 
+        setPhysicianNotes
+      } 
+  } = useVPEContext();
+  const addPhysicianNote = async (text) => {
+    const response = await fetch("/api/upload/physician-notes",{
+        method: "POST",
+        headers: {
+            "Content-Type": "application/json"
+        },
+        body:JSON.stringify({ text })
+    });
+    if(response.ok) {
+        return await response.text()
+    }
+    return ""
+  };
+  const handleNext = async () => {
+    setIsLoading(true);
+    const key = steps[activeStep].key;
+    physicianNotes[key].uri= await addPhysicianNote(physicianNotes[key].text);
+    setPhysicianNotes(physicianNotes);
     setActiveStep((prevActiveStep) => prevActiveStep + 1);
+    setIsLoading(false);
   };
 
   const handleBack = () => {
@@ -58,6 +96,7 @@ const PhysicalExamination = () =>  {
   const handleReset = () => {
     setActiveStep(0);
   };
+  
 
   return (
     <Grid container display="flex" height="100%">
@@ -73,36 +112,50 @@ const PhysicalExamination = () =>  {
             >
               {step.label}
             </StepLabel>
-            <StepContent width="100%">
-            <FormControl fullWidth={true}>
-              <TextField
-                id="outlined-multiline-static"
-                label="Multiline"
-                multiline
-                rows={4}
-                defaultValue="Default Value"
-              />
-            </FormControl>
             
-              <Box sx={{ mb: 2 }}>
-                <div>
-                  <Button
-                    variant="contained"
-                    onClick={handleNext}
-                    sx={{ mt: 1, mr: 1 }}
-                  >
-                    {index === steps.length - 1 ? 'Finish' : 'Continue'}
-                  </Button>
-                  <Button
-                    disabled={index === 0}
-                    onClick={handleBack}
-                    sx={{ mt: 1, mr: 1 }}
-                  >
-                    Back
-                  </Button>
-                </div>
-              </Box>
-            </StepContent>
+              <StepContent width="100%">
+                {isLoading ? 
+                <Box sx={{ width: '100%' }}>
+                  <LinearProgress />
+                </Box>
+                :
+                  <>
+                    <FormControl fullWidth={true}>
+                      <TextField
+                        id="outlined-multiline-static"
+                        multiline
+                        rows={4}
+                        placeholder="Enter your notes for this examination phase"
+                        value={physicianNotes[step.key].text}
+                        onChange={(event) => {
+                          physicianNotes[step.key].text = event.target.value;
+                          setPhysicianNotes(physicianNotes);
+                        }}
+                      />
+                    </FormControl>
+              
+                    <Box sx={{ mb: 2 }}>
+                      <div>
+                        <Button
+                          variant="contained"
+                          onClick={handleNext}
+                          sx={{ mt: 1, mr: 1 }}
+                        >
+                          {index === steps.length - 1 ? 'Finish' : 'Continue'}
+                        </Button>
+                        <Button
+                          disabled={index === 0}
+                          onClick={handleBack}
+                          sx={{ mt: 1, mr: 1 }}
+                        >
+                          Back
+                        </Button>
+                      </div>
+                    </Box>
+                  </>
+                }
+              </StepContent>
+            
           </Step>
         ))}
       </Stepper>
