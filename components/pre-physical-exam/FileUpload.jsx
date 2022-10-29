@@ -5,7 +5,6 @@ import ImgMediaCard from "./ImageMedia";
 import Grid from "@mui/material/Grid";
 import { Divider, Typography } from "@mui/material";
 
-
 const FileUpload = () => {
     
     return (
