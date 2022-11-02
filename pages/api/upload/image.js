@@ -1,15 +1,18 @@
+export const config = {
+    api: {
+        bodyParser: {
+        sizeLimit: '4mb',
+        },
+    },
+}
+
 export default async(req, res) => {
     const url = "https://upload-image-ilpyl7uuva-ue.a.run.app";
-    const image_url = req.body.url;
-    const body = new FormData();
-    body.append("file", image_url);
+
     try {
         const response =  await fetch(url, {
             method: "POST",
-            headers: {
-                "Content-Type": "application/json"
-            },
-            body:JSON.stringify(body)
+            body:req.body
         });
         if (response.ok) {
             const text = await response.text()

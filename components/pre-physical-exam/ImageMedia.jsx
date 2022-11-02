@@ -5,11 +5,18 @@ import CardMedia from '@mui/material/CardMedia';
 import Button from '@mui/material/Button';
 import Stack from '@mui/material/Stack';
 
-export default function ImgMediaCard() {
-  const [file, setFile] = React.useState("https://i.imgur.com/uXlCmgT.gif");
+const ImageMedia = ({ onFileUpload }) =>  {
+  const [fileUrl, setFileUrl] = React.useState("https://i.imgur.com/uXlCmgT.gif");
+  const [file, setFile] = React.useState();
   const onChange = (event) => {
-    setFile(URL.createObjectURL(event.target.files[0]));
-  }
+    const testFile = event.target.files[0];
+    setFile(testFile);
+    setFileUrl(URL.createObjectURL(testFile));
+  };
+  const onClick = () => {
+    onFileUpload(file);
+  };
+
   return (
     <Card >
       <input className="uploadFileButton" type="file" onChange={onChange}/>
@@ -17,13 +24,21 @@ export default function ImgMediaCard() {
         component="img"
         alt="green iguana"
         height="300"
-        image={file}
+        src={fileUrl}
       />
       <CardActions>
         <Stack spacing={2} direction="row-reverse">
-            <Button size="small" variant="contained">Upload</Button>
+            <Button 
+              size="small" 
+              variant="contained"
+              onClick={onClick}
+            >
+              Upload
+            </Button>
         </Stack>
       </CardActions>
     </Card>
   );
 }
+
+export default ImageMedia

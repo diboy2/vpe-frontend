@@ -127,7 +127,7 @@ const TextUpload = () => {
                                             />
                                         </ListItem>
                                     );
-                                    })
+                                })
                             }
                         </List>
                     </Grid>
