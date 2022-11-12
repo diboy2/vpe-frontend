@@ -1,16 +1,16 @@
 export default async(req, res) => {
-    const url = "https://upload-patient-concerns-ilpyl7uuva-uc.a.run.app";
+    const url = "https://get-text-recognition-summary-1-ilpyl7uuva-ue.a.run.app";
     try {
         const response =  await fetch(url, {
             method: "POST",
             headers: {
                 "Content-Type": "application/json"
             },
-            body:JSON.stringify(req.body)
         });
         if (response.ok) {
-            const text = await response.text()
-            res.status(200).send(text)
+            const jsonResponse = await response.json();
+            console.log(JSON.stringify(jsonResponse))
+            res.status(200).json(jsonResponse)
         } else {
             throw new Error(response.statusText)
         }
