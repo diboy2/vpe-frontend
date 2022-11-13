@@ -99,13 +99,13 @@ const PhysicalExamination = () =>  {
   
 
   return (
-    <Grid container display="flex" height="100%">
+    <Grid container display="flex" >
       <Stepper activeStep={activeStep} orientation="vertical" sx={{ width: "100%"}}>
         {steps.map((step, index) => (
           <Step key={step.label} width="100%">
             <StepLabel
               optional={
-                index === 2 ? (
+                index === steps.length-1 ? (
                   <Typography variant="caption">Last step</Typography>
                 ) : null
               }
