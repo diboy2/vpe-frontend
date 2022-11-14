@@ -31,14 +31,13 @@ const PostPhysicalExamination = () => {
             {
                 isLoading ? 
                 <CircularProgress /> :
-                <Grid container display="flex" flexDirection="column" >
+                <Grid container direction="row" >
                     <Grid item xs={6}>
                         <EntityMentionTable entityMentions={entityMentions} />
                     </Grid>
-                    <Grid item xs={4}>
+                    <Grid item xs={6}>
                         <EntityTable entities={entities} />
-                    </Grid>
-                    
+                    </Grid> 
                 </Grid>
             }
               

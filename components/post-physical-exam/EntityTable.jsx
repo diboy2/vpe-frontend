@@ -5,14 +5,18 @@ import TableContainer from '@mui/material/TableContainer';
 import TableCell from '@mui/material/TableCell';
 import TableHead from '@mui/material/TableHead';
 import TableRow from '@mui/material/TableRow';
+import Typography from '@mui/material/Typography';
 
 const EntityTable = ({ entities }) => {
     return (
         <TableContainer>
+            <Typography variant="h6" component="h6" align="center">
+                Entities
+            </Typography>
             <Table  aria-label="simple table" >
                 <TableHead>
                     <TableRow>
-                        <TableCell align="right">Preferred Term</TableCell>
+                        <TableCell align="left">Preferred Term</TableCell>
                         <TableCell align="right">Vocabulary Code</TableCell>
                     </TableRow>
                 </TableHead>

@@ -1,4 +1,6 @@
 import * as React from 'react';
+import Alert from '@mui/material/Alert';
+import AlertTitle from '@mui/material/AlertTitle';
 import Box from '@mui/material/Box';
 import LinearProgress from '@mui/material/LinearProgress';
 import FormControl from '@mui/material/FormControl';
@@ -32,7 +34,7 @@ const steps = [
   },
   {
     key: "lungs",
-    label: 'Lungs'  
+    label: 'Lungs'
   },
   {
     key: "heart",
@@ -81,12 +83,13 @@ const PhysicalExamination = () =>  {
     return ""
   };
   const handleNext = async () => {
-    setIsLoading(true);
     const key = steps[activeStep].key;
-    physicianNotes[key].uri= await addPhysicianNote(physicianNotes[key].text);
+    physicianNotes[key].state = "loading"
     setPhysicianNotes(physicianNotes);
     setActiveStep((prevActiveStep) => prevActiveStep + 1);
-    setIsLoading(false);
+    physicianNotes[key].uri= await addPhysicianNote(physicianNotes[key].text);
+    physicianNotes[key].state = "success";
+    setPhysicianNotes(physicianNotes);
   };
 
   const handleBack = () => {
@@ -111,6 +114,16 @@ const PhysicalExamination = () =>  {
               }
             >
               {step.label}
+              {physicianNotes[step.key].state === "success" &&
+                <Alert severity="success">
+                  <AlertTitle>Success</AlertTitle>
+                </Alert>
+              }
+              {physicianNotes[step.key].state === "loading" && 
+                <Box sx={{ width: '100%' }}>
+                  <LinearProgress />
+                </Box>
+              }
             </StepLabel>
             
               <StepContent width="100%">

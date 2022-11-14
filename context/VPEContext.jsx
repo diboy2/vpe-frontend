@@ -9,43 +9,53 @@ import React, { createContext, useContext, useReducer } from "react";
     physicianNotes: {
         vitalSigns: {
             uri: "",
-            text: ""
+            text: "",
+            state: "init"
         },
         skin: {
             uri: "",
-            text: ""
+            text: "",
+            state: "init"
         },
         headSenses: {
             uri: "",
-            text: ""
+            text: "",
+            state: "init"
         },
         neck: {
             uri: "",
-            text: ""
+            text: "",
+            state: "init"
         },
         lungs: {
             uri: "",
-            text: ""
+            text: "",
+            state: "init"
         },
         heart: {
             uri: "",
-            text: ""
+            text: "",
+            state: "init"
         },
         abdomen: {
             uri: "",
-            text: ""
+            text: "",
+            state: "init"
         },
         extremities: {
             uri: "",
-            text: ""
+            text: "",
+            state: "init"
         },
         neuro: {
             uri: "",
-            text: ""
+            text: "",
+            state: "init"
         },
         social: {
             uri: "",
-            text: ""
+            text: "",
+            state: "init"
         }
     },
     entityMentions: [],
