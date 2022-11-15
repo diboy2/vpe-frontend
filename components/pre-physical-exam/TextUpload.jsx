@@ -85,14 +85,13 @@ const TextUpload = () => {
     return (
         <Grid container display="flex" flexGrow="1">
             <Grid item xs={8} backgroundColor="lightgray" padding="16px" display="flex"   >
-                <Card height="100%" sx={{ flex: 1}}>
-                    <CardContent>
-                        <FormControl fullWidth={true}>
+                <Card height="100%" sx={{ flex: 1, display: "flex", flexDirection: "column"}}>
+                    <CardContent sx={{ flex: 1 }}>
+                        <FormControl fullWidth={true} >
                             <TextField
                                 id="outlined-multiline-static"
                                 label="Multiline"
                                 multiline={true}
-                                rows={4}
                                 value={text}
                                 onChange={(event) => {
                                     setText(event.target.value)
