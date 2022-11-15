@@ -11,6 +11,7 @@ import CardContent from "@mui/material/CardContent";
 import CardActions from "@mui/material/CardActions";
 import Icon from "@mui/material/Icon";
 import TextField from '@mui/material/TextField';
+import Typography from '@mui/material/Typography';
 import { useVPEContext } from "../../context/VPEContext";
 
 const TextUpload = () => {
@@ -113,7 +114,9 @@ const TextUpload = () => {
                         <FormControl fullWidth={true}>
                             <Grid container >
                                 <Grid item xs={12}  >
-                                    Daily Metrics
+                                    <Typography align="center">
+                                        Daily Metrics
+                                    </Typography>
                                     <List>
                                         {
                                             dailyMetrics.length == 0
@@ -132,7 +135,9 @@ const TextUpload = () => {
                                     </List>
                                 </Grid>
                                 <Grid item xs={12} >
-                                    Patient Concerns
+                                    <Typography align="center">
+                                        Patient Concerns
+                                    </Typography>
                                     <List>
                                         {
                                             patientConcerns.length == 0
@@ -151,7 +156,10 @@ const TextUpload = () => {
                                     </List>
                                 </Grid>
                                 <Grid item xs={12} >
-                                    Medical History
+                                    <Typography align="center">
+                                        Medical History
+                                    </Typography>
+                                    <List>
                                     {
                                             medicalHistory.length == 0
                                             ? <Icon /> 
@@ -166,7 +174,7 @@ const TextUpload = () => {
                                                 );
                                             })
                                         }
-                    
+                                    </List>
                                 </Grid>
                             </Grid>
                         </FormControl>
