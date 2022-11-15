@@ -83,21 +83,20 @@ const TextUpload = () => {
     };
     
     return (
-        <Grid container display="flex" flexGrow="1">
-            <Grid item xs={8} backgroundColor="lightgray" padding="16px" display="flex"   >
-                <Card height="100%" sx={{ flex: 1, display: "flex", flexDirection: "column"}}>
-                    <CardContent sx={{ flex: 1 }}>
-                        <FormControl fullWidth={true} >
-                            <TextField
-                                id="outlined-multiline-static"
-                                label="Multiline"
-                                multiline={true}
-                                value={text}
-                                onChange={(event) => {
-                                    setText(event.target.value)
-                                }}
-                            />
-                        </FormControl>
+        <Grid container display="flex" flexGrow="1" backgroundColor="lightgray">
+            <Grid item xs={8} padding="16px" display="flex">
+                <Card height="100%"  sx={{ flex: 1, display: "flex", flexDirection: "column", width:"100%"}}>
+                    <CardContent sx={{ flex: 1, display: "flex" }}>
+
+                        <TextField
+                            fullWidth
+                            value={text}
+                            onChange={(event) => {
+                                setText(event.target.value)
+                            }}
+                            multiline={true}
+                            rows = {10}
+                        />                
                     </CardContent>
                     <CardActions>
                         <Stack spacing={2} direction="row-reverse">
@@ -108,7 +107,7 @@ const TextUpload = () => {
                     </CardActions>
                 </Card>
             </Grid>
-            <Grid item xs={4} padding="16px"  display="flex" backgroundColor="lightgray" >
+            <Grid item xs={4} padding="16px"  display="flex" >
                 <Card height="100%" sx={{ flex: 1}}>
                     <CardContent>
                         <FormControl fullWidth={true}>

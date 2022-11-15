@@ -1,5 +1,6 @@
 import * as React from 'react';
 import Card from '@mui/material/Card';
+import CardContent from '@mui/material/CardContent';
 import CardActions from '@mui/material/CardActions';
 import CardMedia from '@mui/material/CardMedia';
 import Button from '@mui/material/Button';
@@ -18,14 +19,16 @@ const ImageMedia = ({ onFileUpload }) =>  {
   };
 
   return (
-    <Card >
+    <Card height="100%"  sx={{ flex: 1, display: "flex", flexDirection: "column", width:"100%"}} >
       <input className="uploadFileButton" type="file" onChange={onChange}/>
-      <CardMedia
-        component="img"
-        alt="green iguana"
-        height="300"
-        src={fileUrl}
-      />
+      <CardContent>
+        <CardMedia
+          component="img"
+          alt="green iguana"
+          src={fileUrl}
+        />
+      </CardContent>
+      
       <CardActions>
         <Stack spacing={2} direction="row-reverse">
             <Button 

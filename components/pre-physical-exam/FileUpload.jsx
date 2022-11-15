@@ -1,4 +1,6 @@
 import React from "react";
+import Card from '@mui/material/Card';
+import CardContent from "@mui/material/CardContent";
 import ImgMediaCard from "./ImageMedia";
 import Grid from "@mui/material/Grid";
 import Icon from "@mui/material/Icon";
@@ -36,37 +38,41 @@ const FileUpload = () => {
         
     };
     return (
-        <Grid container display="flex" flexGrow="1">
+        <Grid container display="flex" backgroundColor="lightgray">
             <Grid item xs={8} 
                 display="flex" 
                 justifyContent="center" 
                 alignItems="center" 
                 flexDirection="column" 
-                backgroundColor="gray" 
                 padding="16px"
             >
                 <ImgMediaCard
                     onFileUpload={onFileUpload}
                 />
             </Grid>
-            <Grid item xs={4}>
-                Images
-                <List>
-                    {
-                        images.length == 0
-                        ? <Icon /> 
-                        : images.map((image) => {
-                            const { uri, text } = image;
-                            return (
-                                <ListItem>
-                                    <ListItemText
-                                        primary={`${text}`}
-                                    />
-                                </ListItem>
-                            );
-                        })
-                    }
-                </List>
+            <Grid item xs={4} padding="16px" display="flex">
+                <Card height="100%" sx={{ flex: 1 }}>
+                    <CardContent>
+                        Images
+                        <List>
+                            {
+                                images.length == 0
+                                ? <Icon /> 
+                                : images.map((image) => {
+                                    const { uri, text } = image;
+                                    return (
+                                        <ListItem>
+                                            <ListItemText
+                                                primary={`${text}`}
+                                            />
+                                        </ListItem>
+                                    );
+                                })
+                            }
+                        </List>
+                    </CardContent> 
+                </Card>
+                
             </Grid>
         </Grid>
     );
