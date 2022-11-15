@@ -13,7 +13,7 @@ const PrePhysicalExamination = () => {
       setValue(newValue);
     };
     return (
-        <Box sx={{ width: '100%', height:'100%' }} >
+        <Box sx={{ width: '100%', height:'100%', display: "flex", flexDirection: "column" }} >
             <Tabs value={value} onChange={handleChange} centered={true}>
                 <Tab label="Text Upload" value="zero" />
                 <Tab label="File Upload" value="one"/>

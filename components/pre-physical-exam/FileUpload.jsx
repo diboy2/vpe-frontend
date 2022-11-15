@@ -36,7 +36,7 @@ const FileUpload = () => {
         
     };
     return (
-        <Grid container display="flex">
+        <Grid container display="flex" flexGrow="1">
             <Grid item xs={8} 
                 display="flex" 
                 justifyContent="center" 

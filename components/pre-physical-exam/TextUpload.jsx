@@ -83,9 +83,9 @@ const TextUpload = () => {
     };
     
     return (
-        <Grid container display="flex">
-            <Grid item xs={8} backgroundColor="gray"  padding="16px"    >
-                <Card >
+        <Grid container display="flex" flexGrow="1">
+            <Grid item xs={8} backgroundColor="lightgray" padding="16px" display="flex"   >
+                <Card height="100%" sx={{ flex: 1}}>
                     <CardContent>
                         <FormControl fullWidth={true}>
                             <TextField
@@ -109,66 +109,71 @@ const TextUpload = () => {
                     </CardActions>
                 </Card>
             </Grid>
-            <Grid item xs={4}  >
-                <Grid container   
-                >
-                    <Grid item xs={12}  >
-                        Daily Metrics
-                        <List>
-                            {
-                                dailyMetrics.length == 0
-                                ? <Icon /> 
-                                : dailyMetrics.map((dailyMetric) => {
-                                    const { uri, text } = dailyMetric;
-                                    return (
-                                        <ListItem>
-                                            <ListItemText
-                                                primary={`${text}`}
-                                            />
-                                        </ListItem>
-                                    );
-                                })
-                            }
-                        </List>
-                    </Grid>
-                    <Grid item xs={12} >
-                        Patient Concerns
-                        <List>
-                            {
-                                patientConcerns.length == 0
-                                ? <Icon /> 
-                                : patientConcerns.map((patientConcern) => {
-                                    const { uri, text } = patientConcern;
-                                    return (
-                                        <ListItem>
-                                            <ListItemText
-                                                primary={`${text}`}
-                                            />
-                                        </ListItem>
-                                    );
-                                 })
-                            }
-                        </List>
-                    </Grid>
-                    <Grid item xs={12} >
-                        Medical History
-                        {
-                                medicalHistory.length == 0
-                                ? <Icon /> 
-                                : medicalHistory.map((history) => {
-                                    const { uri, text } = history;
-                                    return (
-                                        <ListItem>
-                                            <ListItemText
-                                                primary={`${text}`}
-                                            />
-                                        </ListItem>
-                                    );
-                                 })
-                            }
-          
-                    </Grid>
-                </Grid>
+            <Grid item xs={4} padding="16px"  display="flex" backgroundColor="lightgray" >
+                <Card height="100%" sx={{ flex: 1}}>
+                    <CardContent>
+                        <FormControl fullWidth={true}>
+                            <Grid container >
+                                <Grid item xs={12}  >
+                                    Daily Metrics
+                                    <List>
+                                        {
+                                            dailyMetrics.length == 0
+                                            ? <Icon /> 
+                                            : dailyMetrics.map((dailyMetric) => {
+                                                const { uri, text } = dailyMetric;
+                                                return (
+                                                    <ListItem>
+                                                        <ListItemText
+                                                            primary={`${text}`}
+                                                        />
+                                                    </ListItem>
+                                                );
+                                            })
+                                        }
+                                    </List>
+                                </Grid>
+                                <Grid item xs={12} >
+                                    Patient Concerns
+                                    <List>
+                                        {
+                                            patientConcerns.length == 0
+                                            ? <Icon /> 
+                                            : patientConcerns.map((patientConcern) => {
+                                                const { uri, text } = patientConcern;
+                                                return (
+                                                    <ListItem>
+                                                        <ListItemText
+                                                            primary={`${text}`}
+                                                        />
+                                                    </ListItem>
+                                                );
+                                            })
+                                        }
+                                    </List>
+                                </Grid>
+                                <Grid item xs={12} >
+                                    Medical History
+                                    {
+                                            medicalHistory.length == 0
+                                            ? <Icon /> 
+                                            : medicalHistory.map((history) => {
+                                                const { uri, text } = history;
+                                                return (
+                                                    <ListItem>
+                                                        <ListItemText
+                                                            primary={`${text}`}
+                                                        />
+                                                    </ListItem>
+                                                );
+                                            })
+                                        }
+                    
+                                </Grid>
+                            </Grid>
+                        </FormControl>
+                    </CardContent> 
+                </Card>
             </Grid>
             
         </Grid>
