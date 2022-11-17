@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import Button from '@mui/material/Button';
 import Card from '@mui/material/Card';
+import Divider from '@mui/material/Divider';
 import FormControl from '@mui/material/FormControl';
 import Grid from "@mui/material/Grid";
 import List from "@mui/material/List";
@@ -12,6 +13,7 @@ import CardActions from "@mui/material/CardActions";
 import Icon from "@mui/material/Icon";
 import TextField from '@mui/material/TextField';
 import Typography from '@mui/material/Typography';
+import PreTextList from './PreTextList.jsx'; 
 import { useVPEContext } from "../../context/VPEContext";
 
 const TextUpload = () => {
@@ -44,42 +46,20 @@ const TextUpload = () => {
     const truncate = (input) => input.length > 12 ? `${input.substring(0, 12)}...` : input;
     const addPatientConcern = async () => {
         const uri = await addText("/api/upload/patient-concerns");
-        setPatientConcerns(
-            [
-                ...patientConcerns,
-                {
-                    uri,
-                    text: truncate(text)
-                }
-            ]
-        );
-        setText("");   
+        patientConcerns.push({ uri, text: truncate(text)})
+        setPatientConcerns(patientConcerns);
+        setText(""); 
     };
     const addMedicalHistory = async () => {
         const uri = await addText("/api/upload/medical-history");
-        text = 
-        setMedicalHistory(
-            [
-                ...medicalHistory,
-                {
-                    uri,
-                    text: truncate(text)
-                }
-            ]
-        );
-        setText("");   
+        medicalHistory.push({ uri, text: truncate(text)})
+        setMedicalHistory(medicalHistory);
+        setText("");     
     };
     const addDailyMetric = async () => {
         const uri = await addText("/api/upload/daily-metrics");
-        setDailyMetrics(
-            [
-                ...dailyMetrics,
-                {
-                    uri,
-                    text: truncate(text)
-                }
-            ]
-        );
+        dailyMetrics.push({ uri, text: truncate(text)})
+        setDailyMetrics(dailyMetrics);
         setText("");   
     };
     
@@ -108,82 +88,28 @@ const TextUpload = () => {
                     </CardActions>
                 </Card>
             </Grid>
-            <Grid item xs={4} padding="16px"  display="flex" >
+            <Grid item xs={4} padding="16px"  display="flex" height="100%" >
                 <Card height="100%" sx={{ flex: 1}}>
-                    <CardContent>
-                        <FormControl fullWidth={true}>
-                            <Grid container >
-                                <Grid item xs={12}  >
-                                    <Typography align="center">
-                                        Daily Metrics
-                                    </Typography>
-                                    <List>
-                                        {
-                                            dailyMetrics.length == 0
-                                            ? <Icon /> 
-                                            : dailyMetrics.map((dailyMetric) => {
-                                                const { uri, text } = dailyMetric;
-                                                return (
-                                                    <ListItem>
-                                                        <ListItemText
-                                                            primary={`${text}`}
-                                                        />
-                                                    </ListItem>
-                                                );
-                                            })
-                                        }
-                                    </List>
-                                </Grid>
-                                <Grid item xs={12} >
-                                    <Typography align="center">
-                                        Patient Concerns
-                                    </Typography>
-                                    <List>
-                                        {
-                                            patientConcerns.length == 0
-                                            ? <Icon /> 
-                                            : patientConcerns.map((patientConcern) => {
-                                                const { uri, text } = patientConcern;
-                                                return (
-                                                    <ListItem>
-                                                        <ListItemText
-                                                            primary={`${text}`}
-                                                        />
-                                                    </ListItem>
-                                                );
-                                            })
-                                        }
-                                    </List>
-                                </Grid>
-                                <Grid item xs={12} >
-                                    <Typography align="center">
-                                        Medical History
-                                    </Typography>
-                                    <List>
-                                    {
-                                            medicalHistory.length == 0
-                                            ? <Icon /> 
-                                            : medicalHistory.map((history) => {
-                                                const { uri, text } = history;
-                                                return (
-                                                    <ListItem>
-                                                        <ListItemText
-                                                            primary={`${text}`}
-                                                        />
-                                                    </ListItem>
-                                                );
-                                            })
-                                        }
-                                    </List>
-                                </Grid>
-                            </Grid>
-                        </FormControl>
+                    <CardContent sx={{ height: "100%"}}>
+                        <Grid container  sx={{ flex: 1, display:"flex", height: "100%"}}>
+                            <PreTextList 
+                                header="Daily Metrics"
+                                preTextContent={dailyMetrics}
+                            />
+                            <PreTextList 
+                                header="Patient Concerns"
+                                preTextContent={patientConcerns}
+                            />
+                            <PreTextList 
+                                header="Medical History"
+                                preTextContent={medicalHistory}
+                            />
+                            
+                        </Grid>
                     </CardContent> 
                 </Card>
-            </Grid>
-            
+            </Grid>  
         </Grid>
-        
     );
 };
 

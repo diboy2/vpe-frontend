@@ -38,8 +38,8 @@ const FileUpload = () => {
         
     };
     return (
-        <Grid container display="flex" backgroundColor="lightgray">
-            <Grid item xs={8} 
+        <Grid container display="flex" backgroundColor="lightgray" justifyContent="center">
+            <Grid item xs={6} 
                 display="flex" 
                 justifyContent="center" 
                 alignItems="center" 
@@ -53,7 +53,9 @@ const FileUpload = () => {
             <Grid item xs={4} padding="16px" display="flex">
                 <Card height="100%" sx={{ flex: 1 }}>
                     <CardContent>
-                        Images
+                        <Typography align="center">
+                            Images
+                        </Typography>
                         <List>
                             {
                                 images.length == 0
