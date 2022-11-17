@@ -5,6 +5,7 @@ import ImgMediaCard from "./ImageMedia";
 import Grid from "@mui/material/Grid";
 import Icon from "@mui/material/Icon";
 import List from "@mui/material/List";
+import Typography from '@mui/material/Typography';
 import { useVPEContext } from "../../context/VPEContext";
 
 const FileUpload = () => {

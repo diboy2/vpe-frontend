@@ -19,9 +19,7 @@ const PreTextList = ({
             <Divider />
             <List sx={{ overflowY: "auto", height: "100%"}}>
                 {
-                    preTextContent.length == 0
-                    ? <Icon /> 
-                    : preTextContent.map((contentItem) => {
+                    preTextContent.map((contentItem) => {
                         const { uri, text } = contentItem;
                         return (
                             <ListItem>

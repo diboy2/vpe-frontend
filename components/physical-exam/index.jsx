@@ -87,7 +87,10 @@ const PhysicalExamination = () =>  {
     physicianNotes[key].state = "loading"
     setPhysicianNotes(physicianNotes);
     setActiveStep((prevActiveStep) => prevActiveStep + 1);
-    physicianNotes[key].uri= await addPhysicianNote(physicianNotes[key].text);
+    physicianNotes[key].uri= await addPhysicianNote(
+      `${steps[activeStep].label} Assessment: ` +
+      physicianNotes[key].text
+    );
     physicianNotes[key].state = "success";
     setPhysicianNotes(physicianNotes);
   };

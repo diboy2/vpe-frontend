@@ -1,6 +1,6 @@
 import React, { createContext, useContext, useReducer } from "react";
-
- const vpeContextParams = {
+import { physicianLogData } from "../util/defaultData";
+const vpeContextParams = {
     patientConcerns: [],
     medicalHistory: [],
     dailyMetrics: [],
@@ -9,52 +9,52 @@ import React, { createContext, useContext, useReducer } from "react";
     physicianNotes: {
         vitalSigns: {
             uri: "",
-            text: "",
+            text: physicianLogData.vitalSigns.join(" , "),
             state: "init"
         },
         skin: {
             uri: "",
-            text: "",
+            text: physicianLogData.skin.join(" , "),
             state: "init"
         },
         headSenses: {
             uri: "",
-            text: "",
+            text: physicianLogData.headSenses.join(" , "),
             state: "init"
         },
         neck: {
             uri: "",
-            text: "",
+            text: physicianLogData.neck.join(" , "),
             state: "init"
         },
         lungs: {
             uri: "",
-            text: "",
+            text: physicianLogData.lungs.join(" , "),
             state: "init"
         },
         heart: {
             uri: "",
-            text: "",
+            text: physicianLogData.heart.join(" , "),
             state: "init"
         },
         abdomen: {
             uri: "",
-            text: "",
+            text: physicianLogData.abdomen.join(" , "),
             state: "init"
         },
         extremities: {
             uri: "",
-            text: "",
+            text: physicianLogData.extremities.join(" , "),
             state: "init"
         },
         neuro: {
             uri: "",
-            text: "",
+            text: physicianLogData.neuro.join(" , "),
             state: "init"
         },
         social: {
             uri: "",
-            text: "",
+            text: physicianLogData.social.join(" , "),
             state: "init"
         }
     },

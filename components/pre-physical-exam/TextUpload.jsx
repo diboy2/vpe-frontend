@@ -1,18 +1,11 @@
 import React, { useState } from "react";
 import Button from '@mui/material/Button';
 import Card from '@mui/material/Card';
-import Divider from '@mui/material/Divider';
-import FormControl from '@mui/material/FormControl';
 import Grid from "@mui/material/Grid";
-import List from "@mui/material/List";
-import ListItem from "@mui/material/ListItem";
-import ListItemText from "@mui/material/ListItemText";
 import Stack from "@mui/material/Stack";
 import CardContent from "@mui/material/CardContent";
 import CardActions from "@mui/material/CardActions";
-import Icon from "@mui/material/Icon";
 import TextField from '@mui/material/TextField';
-import Typography from '@mui/material/Typography';
 import PreTextList from './PreTextList.jsx'; 
 import { useVPEContext } from "../../context/VPEContext";
 
