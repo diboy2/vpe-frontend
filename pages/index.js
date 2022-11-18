@@ -14,7 +14,7 @@ import { Grid } from '@mui/material';
 const steps = ['Pre Physical Examination', 'Physical Examination', 'Post Physical Examination'];
 
 export default function Home() {
-  const [activeStep, setActiveStep] = React.useState(0);
+  const [activeStep, setActiveStep] = React.useState(-1);
   const [skipped, setSkipped] = React.useState(new Set());
 
   const isStepSkipped = (step) => {
@@ -22,12 +22,6 @@ export default function Home() {
   };
 
   const handleNext = () => {
-    let newSkipped = skipped;
-    if (isStepSkipped(activeStep)) {
-      newSkipped = new Set(newSkipped.values());
-      newSkipped.delete(activeStep);
-    }
-
     setActiveStep((prevActiveStep) => prevActiveStep + 1);
     setSkipped(newSkipped);
   };
@@ -35,6 +29,11 @@ export default function Home() {
   const handleBack = () => {
     setActiveStep((prevActiveStep) => prevActiveStep - 1);
   };
+
+  const handleStart = () => {
+
+  };
+
 
   return (
     <Grid container className={styles.container} justifyContent="center">
@@ -60,7 +59,15 @@ export default function Home() {
               );
             })}
           </Stepper>
-          <Box  sx={{ display: 'flex', flexDirection: 'row', pt: 2, overflow: "auto", height: "80vh" }} >
+          <Box  sx={{ 
+            display: 'flex', 
+            flexDirection: 'row', 
+            pt: 2, 
+            overflow: "auto", 
+            height: "80vh",
+            alignItems: "center",
+            justifyContent: "center"
+          }} >
             { activeStep === 0 && <PrePhysicalExamination/>}
             { activeStep === 1 && <PhysicalExamination />}
             { activeStep === 2 && <PostPhysicalExamination />}
@@ -74,7 +81,7 @@ export default function Home() {
                     sx={{ mr: 1 }}
                     variant="outlined"
                 >
-                    Back
+                    Restart
                 </Button>
                 <Box sx={{ flex: '1 1 auto' }} />
 

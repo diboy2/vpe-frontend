@@ -159,13 +159,6 @@ const PhysicalExamination = () =>  {
                         >
                           {index === steps.length - 1 ? 'Finish' : 'Continue'}
                         </Button>
-                        <Button
-                          disabled={index === 0}
-                          onClick={handleBack}
-                          sx={{ mt: 1, mr: 1 }}
-                        >
-                          Back
-                        </Button>
                       </div>
                     </Box>
                   </>
