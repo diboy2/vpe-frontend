@@ -14,26 +14,14 @@ import { Grid } from '@mui/material';
 const steps = ['Pre Physical Examination', 'Physical Examination', 'Post Physical Examination'];
 
 export default function Home() {
-  const [activeStep, setActiveStep] = React.useState(-1);
-  const [skipped, setSkipped] = React.useState(new Set());
-
-  const isStepSkipped = (step) => {
-    return skipped.has(step);
-  };
-
+  const [activeStep, setActiveStep] = React.useState(0);
   const handleNext = () => {
     setActiveStep((prevActiveStep) => prevActiveStep + 1);
-    setSkipped(newSkipped);
   };
 
   const handleBack = () => {
     setActiveStep((prevActiveStep) => prevActiveStep - 1);
   };
-
-  const handleStart = () => {
-
-  };
-
 
   return (
     <Grid container className={styles.container} justifyContent="center">
@@ -49,9 +37,6 @@ export default function Home() {
             {steps.map((label, index) => {
               const stepProps = {};
               const labelProps = {};
-              if (isStepSkipped(index)) {
-                stepProps.completed = false;
-              }
               return (
                 <Step key={label} {...stepProps}>
                   <StepLabel {...labelProps}>{label}</StepLabel>

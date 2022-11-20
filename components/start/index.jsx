@@ -8,7 +8,7 @@ import { useRouter } from 'next/router'
 const Start = () => {
     const router = useRouter();
     const handleStart = async () => {
-        router.push("./");
+        setIsLoading(true);
         const response = await fetch("/api/clear/text-recognition-table",{
             method: "POST",
             headers: {
@@ -20,7 +20,7 @@ const Start = () => {
         }
         console.error("Unable to navigate away from start");
     };
-    const [value, setValue] = React.useState("zero");
+    const [isLoading, setIsLoading] = React.useState(false);
 
     return (
         <Paper sx={{ 
@@ -30,10 +30,13 @@ const Start = () => {
             justifyContent: "center", 
             alignItems: "center",
             flexDirection: "column",
-            backgroundColor: "lightgrey" 
+            backgroundColor: isLoading ? "white" : "lightgrey" 
         }} >
-            <Card sx={{ maxWidth: 450 }} >
-                {/* <CircularProgress /> */}
+            { 
+                isLoading ? 
+                <CircularProgress /> :
+                <Card sx={{ maxWidth: 450 }} >
+                
                 <CardHeader
                     title="Physical Examination Prototype"
                 />
@@ -49,7 +52,7 @@ const Start = () => {
                         </Button>
                 </CardActions>
             </Card>
-            
+            }
         </Paper>
         
     )
