@@ -1,6 +1,6 @@
 export const medicalHistoryData = ["father died of cancer", "grandma has asthma"];
-export const patientConcerns = ["feeling very sleepy during the afternoon", "have a black bump on my finger"];
-export const dailyMetrics = [
+export const patientConcernsData = ["feeling very sleepy during the afternoon", "have a black bump on my finger"];
+export const dailyMetricsData = [
     "low heart rate",
     "high heart rate",
     "feeling stressful",
