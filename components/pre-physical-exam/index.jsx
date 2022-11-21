@@ -19,7 +19,6 @@ const PrePhysicalExamination = () => {
                 <Tab label="File Upload" value="one"/>
             </Tabs>
             { value == "zero" && <TextUpload />}
-
             { value == "one" && <FileUpload />}
         </Box>
         

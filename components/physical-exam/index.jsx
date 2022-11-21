@@ -95,9 +95,6 @@ const PhysicalExamination = () =>  {
     setPhysicianNotes(physicianNotes);
   };
 
-  const handleBack = () => {
-    setActiveStep((prevActiveStep) => prevActiveStep - 1);
-  };
 
   const handleReset = () => {
     setActiveStep(0);
@@ -105,7 +102,7 @@ const PhysicalExamination = () =>  {
   
 
   return (
-    <Grid container display="flex" >
+    <Grid container display="flex" height="100%" width="100%">
       <Stepper activeStep={activeStep} orientation="vertical" sx={{ width: "100%"}}>
         {steps.map((step, index) => (
           <Step key={step.label} width="100%">

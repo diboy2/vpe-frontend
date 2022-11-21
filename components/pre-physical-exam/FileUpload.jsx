@@ -1,6 +1,7 @@
 import React from "react";
 import Card from '@mui/material/Card';
 import CardContent from "@mui/material/CardContent";
+import Divider from '@mui/material/Divider';
 import ImgMediaCard from "./ImageMedia";
 import Grid from "@mui/material/Grid";
 import Icon from "@mui/material/Icon";
@@ -57,6 +58,7 @@ const FileUpload = () => {
                         <Typography align="center">
                             Images
                         </Typography>
+                        <Divider />
                         <List>
                             {
                                 images.length == 0

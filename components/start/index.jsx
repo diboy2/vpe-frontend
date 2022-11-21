@@ -16,7 +16,7 @@ const Start = () => {
             }
         });
         if(response.ok) {
-            router.push("./") // TODO: 
+            router.push("./workflow")
         }
         console.error("Unable to navigate away from start");
     };

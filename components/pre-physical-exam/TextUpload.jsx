@@ -8,6 +8,7 @@ import CardActions from "@mui/material/CardActions";
 import TextField from '@mui/material/TextField';
 import PreTextList from './PreTextList.jsx'; 
 import { useVPEContext } from "../../context/VPEContext";
+import Accordion from '@mui/material/Accordion';
 
 const TextUpload = () => {
     const { 
@@ -57,8 +58,8 @@ const TextUpload = () => {
     };
     
     return (
-        <Grid container display="flex" flexGrow="1" backgroundColor="lightgray">
-            <Grid item xs={8} padding="16px" display="flex">
+        <Grid container display="flex" flexGrow="1" backgroundColor="lightgray" justifyContent="center">
+            {/* <Grid item xs={8} padding="16px" display="flex">
                 <Card height="100%"  sx={{ flex: 1, display: "flex", flexDirection: "column", width:"100%"}}>
                     <CardContent sx={{ flex: 1, display: "flex" }}>
 
@@ -80,15 +81,25 @@ const TextUpload = () => {
                         </Stack>
                     </CardActions>
                 </Card>
-            </Grid>
-            <Grid item xs={4} padding="16px"  display="flex" height="100%" >
+            </Grid> */}
+            <Grid item md={8} xs={12} padding="16px"  display="flex" height="100%" >
                 <Card height="100%" sx={{ flex: 1}}>
                     <CardContent sx={{ height: "100%"}}>
                         <Grid container  sx={{ flex: 1, display:"flex", height: "100%"}}>
+                            
                             <PreTextList 
                                 header="Daily Metrics"
                                 preTextContent={dailyMetrics}
                             />
+                            <TextField
+                                fullWidth
+                                value={text}
+                                onChange={(event) => {
+                                    setText(event.target.value)
+                                }}
+                                size="small"
+
+                            />      
                             <PreTextList 
                                 header="Patient Concerns"
                                 preTextContent={patientConcerns}

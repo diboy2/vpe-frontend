@@ -27,7 +27,7 @@ const PostPhysicalExamination = () => {
     },[]);
     
     return (
-        <Grid container display="flex" height="100%" justifyContent="center" alignItems="center" >
+        <Grid container display="flex" height="100%" justifyContent="center" alignItems="center" width="100%">
             {
                 isLoading ? 
                 <CircularProgress /> :
