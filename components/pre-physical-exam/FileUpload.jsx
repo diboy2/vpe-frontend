@@ -6,6 +6,8 @@ import ImgMediaCard from "./ImageMedia";
 import Grid from "@mui/material/Grid";
 import Icon from "@mui/material/Icon";
 import List from "@mui/material/List";
+import ListItem from "@mui/material/ListItem";
+import ListItemText from "@mui/material/ListItemText";
 import Typography from '@mui/material/Typography';
 import { useVPEContext } from "../../context/VPEContext";
 
@@ -18,6 +20,7 @@ const FileUpload = () => {
             setImages
         } 
     } = useVPEContext();
+
     const onFileUpload = async (file) => {
         const body = new FormData();
         body.append("file", file);
@@ -66,7 +69,7 @@ const FileUpload = () => {
                                 : images.map((image) => {
                                     const { uri, text } = image;
                                     return (
-                                        <ListItem>
+                                        <ListItem key={uri}>
                                             <ListItemText
                                                 primary={`${text}`}
                                             />

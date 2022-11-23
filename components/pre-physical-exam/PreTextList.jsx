@@ -36,7 +36,7 @@ const PreTextList = ({
                             preTextContent.map((contentItem) => {
                                 const { uri, text } = contentItem;
                                 return (
-                                    <ListItem>
+                                    <ListItem key={uri}>
                                         <ListItemText
                                             primary={`${text}`}
                                             sx={{ textOverflow: "ellipsis"}}

@@ -1,4 +1,4 @@
-export default async(req, res) => {
+export default async function uploadPhysicianNotes(req, res) {
     const url = "https://upload-physician-note-ilpyl7uuva-ue.a.run.app";
     try {
         const response =  await fetch(url, {

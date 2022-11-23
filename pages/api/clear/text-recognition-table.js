@@ -1,4 +1,4 @@
-export default async(req, res) => {
+export default async function clearTextRecognitionTable(req, res) {
     const url = "https://clear-text-recognition-tables-ilpyl7uuva-ue.a.run.app";
 
     try {

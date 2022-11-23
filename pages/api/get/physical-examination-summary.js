@@ -1,4 +1,4 @@
-export default async(req, res) => {
+export default async function getPhysicalExaminationSummary(req, res) {
     const url = "https://get-text-recognition-summary-1-ilpyl7uuva-ue.a.run.app";
     try {
         const response =  await fetch(url, {
