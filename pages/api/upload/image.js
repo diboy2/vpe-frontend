@@ -6,9 +6,9 @@ export const config = {
     },
 }
 
-export default async function uploadImage(req, res) {
+export default function uploadImage(req, res) {
     httpProxyMiddleware(req, res, {
-        target: 'http://172.18.5.119:8080'
+        target: 'https://upload-image-ilpyl7uuva-ue.a.run.app'
     })
 }
 
