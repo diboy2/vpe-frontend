@@ -1,10 +1,10 @@
 import * as React from 'react';
-import Card from '@mui/material/Card';
+import Grid from '@mui/material/Grid';
 import CardActionArea from '@mui/material/CardActionArea';
 import CardActions from '@mui/material/CardActions';
 import CardMedia from '@mui/material/CardMedia';
 import Button from '@mui/material/Button';
-import Stack from '@mui/material/Stack';
+import Paper from '@mui/material/Paper';
 
 const ImageMedia = ({ onFileUpload }) =>  {
   const [fileUrl, setFileUrl] = React.useState("https://i.imgur.com/uXlCmgT.gif");
@@ -20,30 +20,32 @@ const ImageMedia = ({ onFileUpload }) =>  {
   };
 
   return (
-    <Card height="100%"  sx={{ flex: 1, display: "flex", flexDirection: "column", width:"100%"}} >
-      <input className="uploadFileButton" ref={fileInputRef} type="file" onChange={onChange} hidden/>
+    <Grid item xs={7} sx={{ display: "flex", flexDirection: "column"}}>
+      <Paper elevation={3} square={true}>
+
+      
+      <input className="uploadFileButton" ref={fileInputRef} 
+        type="file" onChange={onChange} hidden={true}
+        accept="image/*"/>
       <CardActionArea onClick={()=>fileInputRef.current.click()}>
         <CardMedia
           component="img"
           alt="green iguana"
           height="300px"
           src={fileUrl}
-          sx={{ padding: "16px", width: "100%"}}
+          sx={{ padding: "16px", width: "100%", backgroundColor: "lightsteelblue"}}
         />
       </CardActionArea>
-      
-      <CardActions>
-        <Stack spacing={2} direction="row-reverse">
-            <Button 
+      <CardActions sx={{ display: "flex", flexDirection: "row-reverse"}}>
+          <Button 
               size="small" 
               variant="contained"
-              onClick={onClick}
-            >
-              Upload
-            </Button>
-        </Stack>
+          >
+              Upload Image
+          </Button>
       </CardActions>
-    </Card>
+      </Paper>
+    </Grid> 
   );
 }
 
