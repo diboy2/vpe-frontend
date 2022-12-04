@@ -136,11 +136,19 @@ export const useVPEContext = () => {
         });
     };
 
+    const addImage = (image) => {
+        setImages([...images, image]);
+    };
+
     const setVideos = (videos) => {
         dispatch({
             type: "SET_VIDEOS",
             payload: videos
         });
+    };
+    
+    const addVideo = (video) => {
+        setVideos([...videos, ]);
     };
 
     const setPhysicianNotes = (physicianNotes) => {
@@ -179,8 +187,8 @@ export const useVPEContext = () => {
             setPatientConcerns,
             setMedicalHistory,
             setDailyMetrics,
-            setImages,
-            setVideos,
+            addImage,
+            addVideo,
             setPhysicianNotes,
             setEntityMentions,
             setEntities

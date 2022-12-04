@@ -8,7 +8,7 @@ import Typography from '@mui/material/Typography';
 
 import { useVPEContext } from "../../context/VPEContext";
 
-const FileList = ({ toggle }) => {
+const FileList = ({ fileTypeToggle }) => {
     const { 
         state: {
             images,
@@ -19,11 +19,12 @@ const FileList = ({ toggle }) => {
     return (
         <CardContent sx={{ flex: 1 }} >
             <Typography align="center">
-                Image Content
+                {fileTypeToggle === "image" && "Image Content"}
+                {fileTypeToggle === "video" && "Video Content"}
             </Typography>
             <Divider />
             <List>
-                {toggle && images && images.map((image) => {
+                {fileTypeToggle === "image" && images && images.map((image) => {
                         const { uri, text } = image;
                         return (
                             <ListItem key={uri}>
@@ -34,7 +35,7 @@ const FileList = ({ toggle }) => {
                         );
                     })
                 }
-                {toggle && videos && videos.map((video) => {
+                {fileTypeToggle === "video" && videos && videos.map((video) => {
                         const { uri, text } = video;
                         return (
                             <ListItem key={uri}>

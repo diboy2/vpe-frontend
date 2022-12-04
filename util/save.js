@@ -15,7 +15,7 @@ export const addText = async (url, text) => {
 export const uploadFile = async (url, file) => {
     const body = new FormData();
     body.append("file", file);
-    const response = await fetch("/api/upload/image",{
+    const response = await fetch(url,{
         method: "POST",
         body
     });
