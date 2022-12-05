@@ -1,4 +1,5 @@
 import * as React from 'react';
+import CircularProgress from '@mui/material/CircularProgress';
 import Grid from '@mui/material/Grid';
 import CardActionArea from '@mui/material/CardActionArea';
 import CardActions from '@mui/material/CardActions';
@@ -11,9 +12,9 @@ import Typography from '@mui/material/Typography';
 import { uploadFile } from '../../util/save';
 import { useVPEContext } from "../../context/VPEContext";
 
-const FileMedia = ({ fileTypeToggle }) =>  {
+const FileMedia = ({ fileTypeToggle, fileUrl, setFileUrl }) =>  {
   const { action: { addImage, addVideo } } = useVPEContext();
-  const [fileUrl, setFileUrl] = React.useState("");
+  const [isLoading, setIsLoading] = React.useState(false);
   const [file, setFile] = React.useState();
   const fileInputRef= React.useRef();
   const onChange = (event) => {
@@ -22,6 +23,7 @@ const FileMedia = ({ fileTypeToggle }) =>  {
     setFileUrl(URL.createObjectURL(testFile));
   };
   const onFileUpload = async () => {
+    setIsLoading(true);
     if (fileTypeToggle === "image") {
       const uri = await uploadFile("/api/upload/image",file);
       addImage({ uri, text: file.name });     
@@ -29,6 +31,8 @@ const FileMedia = ({ fileTypeToggle }) =>  {
       const uri = await uploadFile("/api/upload/video",file);
       addVideo({ uri, text: file.name });     
     }
+    setFileUrl("");
+    setIsLoading(false);
   };
   return (
     
@@ -39,26 +43,34 @@ const FileMedia = ({ fileTypeToggle }) =>  {
           accept={`${fileTypeToggle}/*`}/>
         <CardActionArea onClick={()=>fileInputRef.current.click()}>
             {
-              fileUrl ? 
+              fileUrl && !isLoading ? 
+              
               <CardMedia
                 component={`${fileTypeToggle === "video" ? fileTypeToggle : "img"}`}
                 alt="Upload Image or Video"
                 controls={true}
                 src={fileUrl}
-                sx={{ padding: "16px", width: "100%", backgroundColor: "lightsteelblue", height: "300px" }}
-              /> :
+                sx={{ display: "flex", alignItems: "center", padding: "16px", width: "100%", backgroundColor: "lightsteelblue", height: "300px" }}
+              />:
+
               <CardContent sx={{ padding: "16px", width: "100%", height: "300px", backgroundColor: "lightsteelblue" }}>
                 <Paper square={true} sx={{ display: "flex", justifyContent: "center", alignItems: "center", height: "100%" }}>
-                  <Typography sx={{ mb: 1.5 }} color="text.secondary">
-                    { fileTypeToggle === "image" ? "Select Image" : "Select Video" }
-                  </Typography>
+                  {
+                    isLoading ? 
+                    <CircularProgress /> :
+                    <Typography sx={{ mb: 1.5 }} color="text.secondary">
+                      { fileTypeToggle === "image" ? "Select Image" : "Select Video" }
+                    </Typography>
+                  }
+                  
                 </Paper>
               </CardContent>
             }
         </CardActionArea>
         <CardActions sx={{ paddingTop: "12px", display: "flex", flexDirection: "row-reverse" }} >
           <Button 
-              size="large" 
+              size="large"
+              disabled={!fileUrl || isLoading}
               variant="contained"
               onClick={() => onFileUpload()}
           >

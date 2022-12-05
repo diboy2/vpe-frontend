@@ -148,7 +148,7 @@ export const useVPEContext = () => {
     };
     
     const addVideo = (video) => {
-        setVideos([...videos, ]);
+        setVideos([...videos, video]);
     };
 
     const setPhysicianNotes = (physicianNotes) => {

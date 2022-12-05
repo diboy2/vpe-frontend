@@ -29,6 +29,12 @@ const FileList = ({ fileTypeToggle }) => {
                         return (
                             <ListItem key={uri}>
                                 <ListItemText
+                                    primaryTypographyProps={{ 
+                                        textOverflow: "ellipsis", 
+                                        whiteSpace: "nowrap", 
+                                        width: "100%", 
+                                        overflow: "hidden"
+                                    }}
                                     primary={`${text}`}
                                 />
                             </ListItem>
@@ -40,6 +46,12 @@ const FileList = ({ fileTypeToggle }) => {
                         return (
                             <ListItem key={uri}>
                                 <ListItemText
+                                    primaryTypographyProps={{ 
+                                        textOverflow: "ellipsis", 
+                                        whiteSpace: "nowrap", 
+                                        width: "100%", 
+                                        overflow: "hidden"
+                                    }}
                                     primary={`${text}`}
                                 />
                             </ListItem>

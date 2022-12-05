@@ -13,7 +13,8 @@ import FileMedia from "./FileMedia";
 
 const FileUpload = () => {
     const [ fileTypeToggle, setFileTypeToggle ] = useState("image");
-    
+    const [fileUrl, setFileUrl] = React.useState("");
+
     return (
         <Grid container display="flex" backgroundColor="lightgray" justifyContent="center">
             <Grid item xs={10} display="flex" padding="16px">
@@ -21,6 +22,8 @@ const FileUpload = () => {
                 <Grid container sx={{  display: "flex", flexDirection: "row" }}> 
                     <FileMedia
                         fileTypeToggle={fileTypeToggle}
+                        fileUrl={fileUrl}
+                        setFileUrl={setFileUrl}
                     />
                     <Grid item xs={5} sx={{ display: "flex", flexDirection: "column" }}>
                             <FileList fileTypeToggle={fileTypeToggle} />
@@ -31,14 +34,14 @@ const FileUpload = () => {
                                         label="Images"
                                         icon={<ImageIcon />}
                                         sx={{ flex: 1 }}
-                                        onClick={() => setFileTypeToggle("image")}
+                                        onClick={() => { setFileUrl(""); setFileTypeToggle("image"); }}
                                     />
                                     <BottomNavigationAction
                                         value="video"
                                         label="Videos"
                                         icon={<VideoLibraryIcon />}
                                         sx={{ flex: 1 }}
-                                        onClick={() => setFileTypeToggle("video")}
+                                        onClick={() => { setFileUrl(""); setFileTypeToggle("video");}}
                                     />
                                 </ BottomNavigation>
                             </CardActions>
