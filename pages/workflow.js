@@ -61,10 +61,12 @@ export default function PhysicalExamWorkflow() {
                 Restart
             </Button>
             <Box sx={{ flex: '1 1 auto' }} />
-
-            <Button onClick={handleNext} variant="outlined">
-                {activeStep === steps.length - 1 ? 'Finish' : 'Next'}
-            </Button>
+            { activeStep < steps.length - 1 && 
+              <Button onClick={handleNext} variant="outlined">
+                Next
+              </Button>
+            }
+            
           </Box>
       </Box>
     </>

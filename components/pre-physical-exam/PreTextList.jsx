@@ -13,6 +13,7 @@ import Typography from '@mui/material/Typography';
 import { IconButton } from "@mui/material";
 
 const PreTextList = ({
+    defaultExpanded,
     header,
     preTextContent,
     initialTextValue,
@@ -20,7 +21,7 @@ const PreTextList = ({
 }) => {
     const [text, setText] = useState(initialTextValue);
     return (
-            <Accordion sx={{ width: "100%" }}>
+            <Accordion defaultExpanded={defaultExpanded} sx={{ width: "100%" }}>
                 <AccordionSummary
                     expandIcon={<ExpandMoreIcon />}
                     aria-controls="panel1a-content"

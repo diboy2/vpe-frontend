@@ -19,7 +19,6 @@ const TextUpload = () => {
             setDailyMetrics
         } 
     } = useVPEContext();
-    // const truncate = (input) => input.length > 12 ? `${input.substring(0, 12)}...` : input;
     
     return (
         <Grid container display="flex" flexGrow="1" backgroundColor="lightgray" justifyContent="center">
@@ -27,6 +26,7 @@ const TextUpload = () => {
                 <Card height="100%" sx={{ flex: 1 }}>
                     <CardContent sx={{ height: "100%"}}>
                         <PreTextList 
+                            defaultExpanded={true}
                             header="Daily Metrics"
                             preTextContent={dailyMetrics}
                             initialTextValue={dailyMetricsData.join(" , ")}
@@ -39,6 +39,7 @@ const TextUpload = () => {
                             }
                         />    
                         <PreTextList 
+                            defaultExpanded={false}
                             header="Patient Concerns"
                             preTextContent={patientConcerns}
                             initialTextValue={patientConcernsData.join(" , ")}
@@ -52,6 +53,7 @@ const TextUpload = () => {
                             
                         />
                         <PreTextList 
+                            defaultExpanded={false}
                             header="Medical History"
                             preTextContent={medicalHistory}
                             initialTextValue={medicalHistoryData.join(" , ")}
