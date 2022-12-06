@@ -3,6 +3,7 @@ import BottomNavigation from '@mui/material/BottomNavigation';
 import BottomNavigationAction from '@mui/material/BottomNavigationAction';
 import Card from '@mui/material/Card';
 import CardActions from "@mui/material/CardActions";
+import Divider from "@mui/material/Divider";    
 import Grid from "@mui/material/Grid";
 import Paper from '@mui/material/Paper';
 import ImageIcon from '@mui/icons-material/Image';
@@ -27,23 +28,25 @@ const FileUpload = () => {
                     />
                     <Grid item xs={5} sx={{ display: "flex", flexDirection: "column" }}>
                             <FileList fileTypeToggle={fileTypeToggle} />
-                            <CardActions  disableSpace={true} sx={{ padding: "0px" }}>
-                                <BottomNavigation showLabels={true} value={fileTypeToggle} sx={{ width: "100%" }} >
-                                    <BottomNavigationAction
-                                        value="image"
-                                        label="Images"
-                                        icon={<ImageIcon />}
-                                        sx={{ flex: 1 }}
-                                        onClick={() => { setFileUrl(""); setFileTypeToggle("image"); }}
-                                    />
-                                    <BottomNavigationAction
-                                        value="video"
-                                        label="Videos"
-                                        icon={<VideoLibraryIcon />}
-                                        sx={{ flex: 1 }}
-                                        onClick={() => { setFileUrl(""); setFileTypeToggle("video");}}
-                                    />
-                                </ BottomNavigation>
+                            <CardActions  sx={{ padding: "0px" }}>
+                                <Paper sx={{ width: "100%"}} elevation={3}>
+                                    <BottomNavigation showLabels={true} value={fileTypeToggle} sx={{ width: "100%" }} >
+                                        <BottomNavigationAction
+                                            value="image"
+                                            label="Images"
+                                            icon={<ImageIcon />}
+                                            sx={{ flex: 1 }}
+                                            onClick={() => { setFileUrl(""); setFileTypeToggle("image"); }}
+                                        />
+                                        <BottomNavigationAction
+                                            value="video"
+                                            label="Videos"
+                                            icon={<VideoLibraryIcon />}
+                                            sx={{ flex: 1 }}
+                                            onClick={() => { setFileUrl(""); setFileTypeToggle("video");}}
+                                        />
+                                    </ BottomNavigation>
+                                </ Paper>
                             </CardActions>
                      </Grid>
                     </Grid>

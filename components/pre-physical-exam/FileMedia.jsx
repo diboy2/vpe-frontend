@@ -67,7 +67,7 @@ const FileMedia = ({ fileTypeToggle, fileUrl, setFileUrl }) =>  {
               </CardContent>
             }
         </CardActionArea>
-        <CardActions sx={{ paddingTop: "12px", display: "flex", flexDirection: "row-reverse" }} >
+        <CardActions sx={{ paddingTop: "6px", display: "flex", flexDirection: "row-reverse" }} >
           <Button 
               size="large"
               disabled={!fileUrl || isLoading}
