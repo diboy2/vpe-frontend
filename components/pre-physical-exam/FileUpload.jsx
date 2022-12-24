@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import BottomNavigation from '@mui/material/BottomNavigation';
 import BottomNavigationAction from '@mui/material/BottomNavigationAction';
 import Card from '@mui/material/Card';
-import CardActions from "@mui/material/CardActions";    
+import CardActions from "@mui/material/CardActions";
 import Grid from "@mui/material/Grid";
 import Paper from '@mui/material/Paper';
 import ImageIcon from '@mui/icons-material/Image';
@@ -19,7 +19,7 @@ const FileUpload = () => {
         <Grid container display="flex" backgroundColor="lightgray" justifyContent="center">
             <Grid item xs={10} display="flex" padding="16px">
                 <Card height="100%" sx={{ flex: 1, display: "flex", flexDirection: "column", width:"100%"}}>
-                <Grid container sx={{  display: "flex", flexDirection: "row" }}> 
+                <Grid container sx={{  display: "flex", flexDirection: "row" }}>
                     <FileMedia
                         fileTypeToggle={fileTypeToggle}
                         fileUrl={fileUrl}
@@ -49,9 +49,9 @@ const FileUpload = () => {
                             </CardActions>
                      </Grid>
                     </Grid>
-                    
+
                 </Card>
-                
+
             </Grid>
         </Grid>
     );
